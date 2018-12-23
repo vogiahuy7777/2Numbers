@@ -110,8 +110,38 @@ public class MyBigNumberTest implements IReceiver {
         try {
             System.out.printf("sum :");
             String str1 = "21";
-            String str2 = "10)";
+            String str2 = "10";
             String expResult = "31";
+            MyBigNumberTest test = new MyBigNumberTest();
+            MyBigNumber mybignumber = new MyBigNumber(test);
+            String result = mybignumber.sum(str1, str2);
+            assertEquals(expResult, result);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
+    }
+    
+        public void testSum6() {
+        try {
+            System.out.printf("sum :");
+            String str1 = "0";
+            String str2 = "123";
+            String expResult = "123";
+            MyBigNumberTest test = new MyBigNumberTest();
+            MyBigNumber mybignumber = new MyBigNumber(test);
+            String result = mybignumber.sum(str1, str2);
+            assertEquals(expResult, result);
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
+    }
+        
+                public void testSum7() {
+        try {
+            System.out.printf("sum :");
+            String str1 = "123";
+            String str2 = "0";
+            String expResult = "123";
             MyBigNumberTest test = new MyBigNumberTest();
             MyBigNumber mybignumber = new MyBigNumber(test);
             String result = mybignumber.sum(str1, str2);
