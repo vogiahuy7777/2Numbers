@@ -32,13 +32,15 @@ public class MyBigNumber {
         String num2 = str2;
         String step = "";
         String process = "";
-        String sum = "";
-        Pattern pattern = Pattern.compile("\\D"); 
-        final Matcher isError1 = pattern.matcher(num1);
-        final Matcher isError2 = pattern.matcher(num2);;
-        int remember = 0;
-        int saveResult = 0; 
+        String sum = "";  //tao ra biến lưu kết quả
+        Pattern pattern = Pattern.compile("\\D"); // Chuỗi đại diện cho kí tự số từ [0-9]
+        final Matcher isError1 = pattern.matcher(num1); // biến để lưu dữ kết quả xét chuỗi s1 
+        final Matcher isError2 = pattern.matcher(num2);;  // biến để lưu dữ kết quả xét chuỗi s2
+        int remember = 0; //tạo ra biến lưu số để nhớ nếu kết quả cộng lớn hơn 10
+        int saveResult = 0; // biến dùng để lưu kết qua phép cộng của từng kì tụ trong chuỗi
 
+        // đưa ra lỗi nếu có khi dữ liệu được nhập vào
+        //kiểm tra người dùng có nhập đủ input chưa
         char char1 = '0';
         char char2 = '0';
 
@@ -54,7 +56,7 @@ public class MyBigNumber {
             throw new Exception(position);
         }
 
-
+        // Dùng để kiểm tra nếu người dùng nhập vào là số âm
         if (num1.charAt(0) == '-') {
             position = 1;
             this.ireceiver.send("Error with input negative number: " + num1);
@@ -67,7 +69,7 @@ public class MyBigNumber {
             throw new Exception(position);
         }
 
-  
+        // Dùng để kiểm tra nếu người dùng nhập vào là ký tự đặc biệt
         if (isError1.find()) {
             position = isError1.start() + 1;
             this.ireceiver.send("position " + position + " in array " + num1 + " is not nummber");
@@ -82,13 +84,14 @@ public class MyBigNumber {
         }
         int i = 0; 
         for (i = 1; i <= max; i++) { 
-            char1 = ((l1 - i) >= 0) ? num1.charAt(l1 - i) : '0'; 
-            char2 = ((l2 - i) >= 0) ? num2.charAt(l2 - i) : '0'; 
+            char1 = ((l1 - i) >= 0) ? num1.charAt(l1 - i) : '0'; // nếu chuỗi số 1 không còn ta sẽ ghi 0
+            char2 = ((l2 - i) >= 0) ? num2.charAt(l2 - i) : '0'; // nếu chuỗi số 2 không còn ta sẽ ghi 0
 
             saveResult = (char1 - '0') + (char2 - '0') + remember;
-            sum = Integer.toString(saveResult % 10) + sum; 
-            remember = saveResult / 10;
-
+            sum = Integer.toString(saveResult % 10) + sum;  // ghi kết quả cộng được vào biến sum
+            remember = saveResult / 10; //lưu vào remember là 1 nếu kết quả cộng được lớn hơn 10
+            
+              
             if (remember == 1) {
                 if (num2.length() - i >= 0) {
                     process = "step" + i + ":" + "1" + "\n get " + char1 + "2" + "\n add " + char2 + "3" + "\n add " 
@@ -116,7 +119,9 @@ public class MyBigNumber {
         }
         step = step + "\n The Answer is : " + sum;
 
-        this.ireceiver.send(step);
+        this.ireceiver.send(step);// gửi các bước đến ireceiver để in ra màn hình
+
+        // trả về kết quả của phép cộng
         
         return sum;
     }
