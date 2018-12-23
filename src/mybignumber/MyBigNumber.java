@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 
 public class MyBigNumber {
 
-    private final IReceiver ireceiver;
+    private  IReceiver ireceiver;
 
     public MyBigNumber(final IReceiver ireceiver) {
         this.ireceiver = ireceiver;
@@ -30,8 +30,8 @@ public class MyBigNumber {
         int max =  (l1 > l2) ? l1 : l2; 
         String num1 = str1;
         String num2 = str2;
-        String step = "";
-        String process = "";
+        String step = ""; // cac buoc thuc hien
+        String process = ""; // qua trinh thuc hien
         String sum = "";  //tao ra biến lưu kết quả
         Pattern pattern = Pattern.compile("\\D"); // Chuỗi đại diện cho kí tự số từ [0-9]
         final Matcher isError1 = pattern.matcher(num1); // biến để lưu dữ kết quả xét chuỗi s1 
@@ -44,17 +44,15 @@ public class MyBigNumber {
         char char1 = '0';
         char char2 = '0';
 
-        if (num1.isEmpty()) {
-            position = 1;
-            this.ireceiver.send("Enter the first one : ");
-            throw new Exception(position);
-        }
-
-        if (num2.isEmpty()) {
-            position = 1;
-            this.ireceiver.send("Enter the second one: ");
-            throw new Exception(position);
-        }
+	if (num1.isEmpty() && !num2.isEmpty()) {			
+            return num2;
+	}
+	if (!num1.isEmpty() && num2.isEmpty()) {
+            return num1;
+	}
+	if (num1.isEmpty() && num2.isEmpty()) {			
+            return "0";
+	}
 
         // Dùng để kiểm tra nếu người dùng nhập vào là số âm
         if (num1.charAt(0) == '-') {
@@ -88,7 +86,7 @@ public class MyBigNumber {
             char2 = ((l2 - i) >= 0) ? num2.charAt(l2 - i) : '0'; // nếu chuỗi số 2 không còn ta sẽ ghi 0
 
             saveResult = (char1 - '0') + (char2 - '0') + remember;
-            sum = Integer.toString(saveResult % 10) + sum;  // ghi kết quả cộng được vào biến sum
+            sum = (saveResult % 10) + sum;  // ghi kết quả cộng được vào biến sum
             remember = saveResult / 10; //lưu vào remember là 1 nếu kết quả cộng được lớn hơn 10
             
               
@@ -114,7 +112,7 @@ public class MyBigNumber {
         }
 
         if (remember == 1) {
-            sum = Integer.toString(remember) + sum;
+            sum = (remember) + sum;
             step = step + "step " + i + ", get " + remember + " write trước kết quả\n";
         }
         step = step + "\n The Answer is : " + sum;
