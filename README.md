@@ -1,12 +1,16 @@
 I) Download software:
 1.Click this link below: https://drive.google.com/file/d/1GobOWqnYBlzp-KZTDjktj24AJDIPHQsy/view?usp=sharing
+
 2.Video how to setup enviroment: https://youtu.be/uUehBj3WwIw 
 NOTE: Before download and use this software, you have to install JRE first and setup java enviroment.
 Click this link to see the tutorial : How to instal JRE https://www.youtube.com/watch?v=Zx3ceLdFm64
 
 II) This code can be complied in console (CMD): (Clone this project and Open project by using IntelliJ IDE)
+
 1.Open cmd/PowerShell and dir into the MyBigNumber/src
+
 2.java -jar ~/MyBigNumber/src/MyBigNumber.jar number1 number2
+
 Example : java -jar F:\MyBigNumber\dist\MyBigNumber.jar 25 25
 
 III) Testing : on TestResultWithCoverage.png
@@ -28,4 +32,3 @@ III) Test:
 
 1.Choose MyBigNumberTest.java, right click on it and choose Run 'MyBigNumberTest' with coverage
 2.See the result in folder test/testResultWithCoverage.png
-
