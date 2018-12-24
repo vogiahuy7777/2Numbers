@@ -24,12 +24,25 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
+
 
 
 
 public class MyBigNumberTest implements IReceiver{
     public static int i = 1;
-    @Test
+
+    public MyBigNumberTest() {
+    }
+
+  
+    public ExpectedException expected = ExpectedException.none();
+
+    /**
+     * Test of sum method, of class MyBigNumber.
+     */
+ @Test
     ////string 1 length equal string 2 length
     public void testSum_N_1() {
         System.out.println("Test1");
@@ -138,7 +151,7 @@ public class MyBigNumberTest implements IReceiver{
     ////Test when string1 input contain special char
     @Test(expected=NumberFormatException.class)
     public void testSum_N_10() {
-        System.out.println("Test9");
+        System.out.println("Test10");
         String s1 = "!!12";
         String s2 = "1234";
         MyBigNumber instance = new MyBigNumber(this);
@@ -152,14 +165,12 @@ public class MyBigNumberTest implements IReceiver{
         String s1 = "123";
         String s2 = "!!1";
         MyBigNumber instance = new MyBigNumber(this);
-        String result;
-        result = instance.sum(s1, s2);
+        String result = instance.sum(s1, s2);
     }
     
     @Override
 	public void send(String msg) {
-	 System.out.println("Case" + i + ":");
-        i++;
+		// TODO Auto-generated method stub
 	}
 
 
