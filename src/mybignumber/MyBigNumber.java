@@ -23,13 +23,13 @@ public class MyBigNumber {
 
  
     @SuppressWarnings("empty-statement")
-    public String sum(final String str1, final String str2) {
+    public String sum(final String s1, final String s2) {
         int position;
-        int l1 = str1.length();
-        int l2 = str2.length();
+        int l1 = s1.length();
+        int l2 = s2.length();
         int max =  (l1 > l2) ? l1 : l2; 
-        String num1 = str1;
-        String num2 = str2;
+        String num1 = s1;
+        String num2 = s2;
         String step = ""; // cac buoc thuc hien
         String process = ""; // qua trinh thuc hien
         String sum = "";  //tao ra biến lưu kết quả
@@ -68,17 +68,19 @@ public class MyBigNumber {
         }
 
         // Dùng để kiểm tra nếu người dùng nhập vào là ký tự đặc biệt
-        if (isError1.find()) {
-            position = isError1.start() + 1;
-            this.ireceiver.send("position " + position + " in array " + num1 + " is not nummber");
-            throw new Exception(position);
+        Pattern pattern1 = Pattern.compile("[!@#$%&*()_+=|<>?{}\\\\[\\\\]~-]");
+        Matcher matcher1 = pattern1.matcher(s1);
+        Pattern pattern2 = Pattern.compile("[!@#$%&*()_+=|<>?{}\\\\[\\\\]~-]");
+        Matcher matcher2 = pattern1.matcher(s2);
+
+        if (matcher1.find()) {
+            throw new NumberFormatException("Position " + (matcher1.start() + 1) + " in String " + s1
+            + " not a number");
         }
 
-        if (isError2.find()) {
-            position = isError2.start() + 1;
-            this.ireceiver.send("position " + position + " in array " + num2 + " is not number");
-            throw new Exception(position);
-
+        if (matcher2.find()) {
+            throw new NumberFormatException("Position " + (matcher2.start() + 1) + " in String " + s2
+            + " not a number");
         }
         int i = 0; 
         for (i = 1; i <= max; i++) { 
@@ -92,7 +94,7 @@ public class MyBigNumber {
               
             if (remember == 1) {
                 if (num2.length() - i >= 0) {
-                    process = "step" + i + ":" + "1" + "\n get " + char1 + "2" + "\n add " + char2 + "3" + "\n add " 
+                    process = "step" + i   + "\n get " + char1 +  "\n add " + char2 +  "\n add " 
                         + remember + " \n nhave " + saveResult + "\n write " + saveResult % 10 + ", \n remember" + remember + "\n";
                 } else {
                     process = "\nstep " + i + ", \nget " + char1 + " \nadd " + remember 
