@@ -58,13 +58,11 @@ public class MyBigNumber {
         if (num1.charAt(0) == '-') {
             position = 1;
             this.ireceiver.send("Error with input negative number: " + num1);
-            throw new Exception(position);
         }
 
         if (num2.charAt(0) == '-') {
             position = 1;
             ireceiver.send("Error with input negative number: " + num2);
-            throw new Exception(position);
         }
 
         // Dùng để kiểm tra nếu người dùng nhập vào là ký tự đặc biệt
@@ -73,14 +71,28 @@ public class MyBigNumber {
         Pattern pattern2 = Pattern.compile("[!@#$%&*()_+=|<>?{}\\\\[\\\\]~-]");
         Matcher matcher2 = pattern1.matcher(s2);
 
+               for (int i = 0; i < l1; i++) {
+            if (Character.isLetter(s1.charAt(i))) {
+                throw new NumberFormatException("Position " + (i + 1) + " in String " + s1
+                        + " not a number");
+            }
+        }
+
+        for (int i = 0; i < l2; i++) {
+            if (Character.isLetter(s2.charAt(i))) {
+                throw new NumberFormatException("Position" + (i + 1) + " in String " + s2
+                        + " not a number");
+            }
+        }
+
         if (matcher1.find()) {
             throw new NumberFormatException("Position " + (matcher1.start() + 1) + " in String " + s1
-            + " not a number");
+                    + " not a number");
         }
 
         if (matcher2.find()) {
             throw new NumberFormatException("Position " + (matcher2.start() + 1) + " in String " + s2
-            + " not a number");
+                    + " not a number");
         }
         int i = 0; 
         for (i = 1; i <= max; i++) { 
