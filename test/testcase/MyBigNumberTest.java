@@ -15,7 +15,6 @@ package testcase;
  *
  * @author Gia Huy
  */
-import mybignumber.Exception;
 import mybignumber.IReceiver;
 import mybignumber.MyBigNumber;
 import org.junit.After;
