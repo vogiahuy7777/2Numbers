@@ -44,6 +44,8 @@ public class MyBigNumber {
         char char1 = '0';
         char char2 = '0';
 
+        
+        // trong se duoc gan bang 0
 	if (num1.isEmpty() && !num2.isEmpty()) {			
             return num2;
 	}
@@ -53,6 +55,15 @@ public class MyBigNumber {
 	if (num1.isEmpty() && num2.isEmpty()) {			
             return "0";
 	}
+        
+        // null se gan thanh 0
+        if ((s1 == null) || (s1.trim().isEmpty())) {
+            num1 = "0";
+        }
+
+        if ((s2 == null) || (s2.trim().isEmpty())) {
+            num2 = "0";
+        }
 
         // Dùng để kiểm tra nếu người dùng nhập vào là số âm
         if (num1.charAt(0) == '-') {
