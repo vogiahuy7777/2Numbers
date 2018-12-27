@@ -166,6 +166,47 @@ public class MyBigNumberTest implements IReceiver{
         MyBigNumber instance = new MyBigNumber(this);
         String result = instance.sum(s1, s2);
     }
+     @Test(expected=NumberFormatException.class)
+        public void testSum_N_12() {
+        System.out.println("Test12");
+        String s1 = "-123";
+        String s2 = "1";
+        MyBigNumber instance = new MyBigNumber(this);
+        String result = instance.sum(s1, s2);
+    }
+         @Test(expected=NumberFormatException.class)
+        public void testSum_N_13() {
+        System.out.println("Test13");
+        String s1 = "-123";
+        String s2 = "-1";
+        MyBigNumber instance = new MyBigNumber(this);
+        String result = instance.sum(s1, s2);
+    }
+    
+         @Test(expected=NumberFormatException.class)
+        public void testSum_N_14() {
+        System.out.println("Test14");
+        String s1 = "123";
+        String s2 = "-1";
+        MyBigNumber instance = new MyBigNumber(this);
+        String result = instance.sum(s1, s2);
+    }
+         @Test(expected=NumberFormatException.class)
+        public void testSum_N_15() {
+        System.out.println("Test15");
+        String s1 = "null";
+        String s2 = "1";
+        MyBigNumber instance = new MyBigNumber(this);
+        String result = instance.sum(s1, s2);
+    }
+         @Test(expected=NumberFormatException.class)
+        public void testSum_N_16() {
+        System.out.println("Test16");
+        String s1 = "null";
+        String s2 = "null";
+        MyBigNumber instance = new MyBigNumber(this);
+        String result = instance.sum(s1, s2);
+    }
     
     @Override
 	public void send(String msg) {
